@@ -1,0 +1,14 @@
+type EventsSummary {
+  id: ID!
+  pancakeFactory_PairCreated: [PancakeFactory_PairCreated!]! @derivedFrom(field: "eventsSummary")
+  pancakeFactory_PairCreatedCount: BigInt!
+}
+
+type PancakeFactory_PairCreated {
+  id: ID!
+  token0: String!
+  token1: String!
+  pair: String!
+  _3: BigInt!
+  eventsSummary: String!
+}

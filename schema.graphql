@@ -1,0 +1,89 @@
+
+
+type PancakeFactory @entity {
+  id: ID!
+  pairCount: String!
+  totalVolumeUSD: String!
+  totalLiquidityUSD: String!
+  totalLiquidityBNB: String!
+  txCount: String!
+  pairs: [Pair!]! @derivedFrom(field: "factory")
+}
+
+type Token @entity {
+  id: ID!
+  symbol: String!
+  name: String!
+  decimals: String!
+  totalSupply: String!
+  tradeVolume: String!
+  tradeVolumeUSD: String!
+  untrackedVolumeUSD: String!
+  txCount: String!
+  totalLiquidity: String!
+  derivedBNB: String!
+  pairs: [Pair!]! @derivedFrom(field: "token0")
+}
+
+type Pair @entity {
+  id: ID!
+  factory: PancakeFactory!
+  token0: Token!
+  token1: Token!
+  reserve0: String!
+  reserve1: String!
+  totalSupply: String!
+  reserveBNB: String!
+  reserveUSD: String!
+  trackedReserveBNB: String!
+  token0Price: String!
+  token1Price: String!
+  volumeToken0: String!
+  volumeToken1: String!
+  volumeUSD: String!
+  untrackedVolumeUSD: String!
+  txCount: String!
+  createdAtTimestamp: String!
+  createdAtBlockNumber: String!
+  swaps: [PancakePair_Swap!]! @derivedFrom(field: "pair")
+
+}
+
+type PancakeFactory_PairCreated @entity {
+  id: ID!
+  token0: Token!
+  token1: Token!
+  pair: Pair!
+  blockNumber: String!
+  blockTimestamp: String!
+  transactionHash: String!
+}
+
+type PancakePair_Swap @entity {
+  id: ID!
+  pair: Pair!
+  sender: String!
+  amount0In: String!
+  amount1In: String!
+  amount0Out: String!
+  amount1Out: String!
+  to: String!
+  logIndex: String!
+  amountUSD: String!
+  blockNumber: String!
+  blockTimestamp: String!
+  transactionHash: String!
+}
+
+
+
+type PancakePair_Sync @entity {
+  id: ID!
+  pair: Pair!
+  reserve0: String!
+  reserve1: String!
+  blockNumber: String!
+  blockTimestamp: String!
+  transactionHash: String!
+}
+
